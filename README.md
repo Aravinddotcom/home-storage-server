@@ -6,10 +6,13 @@ Requirements:
 3. Home Router (Via Ethernet for better speed)
 
    To create a shared network drive that other devices, such as your TV, can access, we'll use Samba—an open-source file-sharing protocol compatible with Linux, Windows, and most other platforms. Here’s a step-by-step guide:
+
+
    Step 1 :
      Open a terminal and Update your system. Install Samba (Open-source file-sharing protocol compatible with Linux, Windows, and most other platforms.)
      > sudo apt update && sudo apt upgrade -y
      > sudo apt install samba -y
+   
    Step 2 :
      **Set Up a Shared Folder**
      1. Choose or create a folder that you want to share across your network. Create a new directory for shared storage (or use an existing one):
@@ -17,7 +20,8 @@ Requirements:
      2. Set permissions on this directory:
        > sudo chmod -R 777 /home/<your-username>/shared
        This gives read, write, and execute permissions to all users. This setup works in a trusted home network but can be restrictive for more secure environments.
-  Step 3 :
+
+   Step 3 :
   **Configure Samba**
     Now, configure Samba to make this folder accessible over the network.
     1. Open the Samba configuration file:
@@ -33,21 +37,25 @@ Requirements:
        > writable = yes
     3. Replace <your-username> with your actual Ubuntu username.
     4. Save the file and exit (Ctrl+X, then Y, then Enter).
+ 
  Step 4 :
  **Create a Samba User**
    To allow network access to the shared folder, create a Samba user:
    1. Add your Ubuntu username to Samba:
     > sudo smbpasswd -a <your-username>
    2. Enter and confirm a password. This will be the password you use to access the shared folder from other devices.
+
 Step 5:
 **Restart Samba Services**
   After making these changes, restart the Samba services for them to take effect:
     > sudo systemctl restart smbd
     > sudo systemctl restart nmbd
+
 Step 6:
 **Adjust Firewall Settings (if needed)**
   If you have a firewall enabled on Ubuntu, you may need to allow Samba traffic.
   > sudo ufw allow samba
+
 Step 7: 
 **Accessing the Shared Folder from Other Devices**
   **Windows**
